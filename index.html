@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
+
+        <title>3DFAW 2019 - Dense Reconstruction from Video (ICCV 2019)</title>
+        <!-- Bootstrap Core CSS -->
+        <link href="./bootstrap.min.css" rel="stylesheet">
+        <link href="./bootstrap-social.css" rel="stylesheet">
+        <link href="./custom.css" rel="stylesheet">
+        <!-- Custom CSS -->
+        <link href="./modern-business.css" rel="stylesheet">
+        <!-- Custom Fonts -->
+        <link href="./font-awesome.min.css" rel="stylesheet" type="text/css">
+		
+		<script src="./jquery.js.download"></script>
+		<script src="./bootstrap.min.js.download"></script>
+
+		<style>
+			body {
+				background-color: #44647d;
+				color: #d7dee3;
+			}
+		</style>		
+		
+    </head>
+    <body>
+        <!-- Page Content -->
+        <div class="container">
+            <!-- Marketing Icons Section -->
+            <div class="row" align="center">
+				<img src="logo2.jpg" class="img-responsive" align="center">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <h1 class="page-header first-header text-center" style="border-bottom:none">2<sup>nd</sup> 3D Face Alignment in the Wild Challenge</h1>
+				<h2 class="page-header first-header text-center" style="border-bottom:none">- Dense Reconstruction from Video -</h2>
+                <h4 class="text-center">In conjunction with <a href="http://iccv2019.thecvf.com">ICCV 2019, Seoul, Korea</a><br>
+				Oct 27th- Nov 2nd, 2019</h4>
+                <br>
+				</div>				
+            </div>
+            <div class="row">
+                <div class="col-lg-10 col-md-10 col-sm-12 col-sm-offset-0 col-xs-10 col-xs-offset-1 col-md-offset-1 col-lg-offset-1">
+                    <h2 class="page-header">Description</h2>
+                </div>
+                <div class="col-lg-10 col-md-10 col-sm-12 col-sm-offset-0 col-xs-10 col-xs-offset-1 col-md-offset-1 col-lg-offset-1">
+                    <p class="text-justify">
+                        Face alignment – the problem of automatically locating detailed facial landmarks across different subjects, illuminations, and viewpoints – is critical to face analysis applications, such as identification, facial expression analysis, robot-human interaction, affective computing, and multimedia.
+                    </p>
+                    <p class="text-justify">
+                        3D face alignment approaches have strong advantages over 2D with respect to representational power and robustness to illumination and pose. 3D approaches accommodate a wide range of views. Depending on the 3D model, they easily can accommodate a full range of head rotation. Disadvantages are the need for 3D images and controlled illumination, as well as the need for special sensors or synchronized cameras in data acquisition.
+                    </p>
+                    <p class="text-justify">
+                        Because these requirements often are difficult to meet, 3D alignment from 2D video or images has been proposed as a potential solution. Over the past few years a number of research groups have made rapid advances in dense 3D alignment from 2D video and obtained impressive results. How these various methods compare is relatively unknown. Previous benchmarks addressed sparse 3D alignment and single image 3D reconstruction. No commonly accepted evaluation protocol exists for dense 3D face reconstruction from video with which to compare them.
+                    </p>
+
+                    <p class="text-justify">
+                        To enable comparisons among alternative methods, we present the 2<sup>nd</sup> 3D Face Alignment in the Wild - Dense Reconstruction from Video Challenge. This topic is germane to both computer vision and multimedia communities. For computer vision, it is an exciting approach to longstanding limitations of single-image 3D reconstruction approaches. For multimedia, 3D alignment would enable more powerful applications. 
+                    </p>
+                </div>
+            </div>
+			
+            <div class="row">
+                <div class="col-lg-10 col-md-10 col-sm-12 col-sm-offset-0 col-xs-10 col-xs-offset-1 col-md-offset-1 col-lg-offset-1">
+                    <h2 class="page-header">Main track</h2>
+                </div>
+                <div class="col-lg-10 col-md-10 col-sm-12 col-sm-offset-0 col-xs-10 col-xs-offset-1 col-md-offset-1 col-lg-offset-1">
+                    <p class="text-justify">
+                        3DFAW is intended to bring together computer vision and multimedia researchers whose work is related to 2D or 3D face alignment. We are soliciting original contributions which address a wide range of theoretical and application issues of 3D face alignment for computer vision applications and multimedia including, including but not limited to:
+                        </p><ul>
+                            <li>3D and 2D face alignment from 2D dimensional images</li>
+                            <li>Model- and stereo-based 3D face reconstruction</li>
+                            <li>Dense and sparse face tracking from 2D and 3D dimensional inputs</li>
+                            <li>Applications of face alignment</li>
+                            <li>Face alignment for embedded and mobile devices</li>
+                            <li>Facial expression retargeting (avatar animation)</li>
+                            <li>Face alignment-based user interfaces</li>
+                        </ul>
+                    <p></p>
+                </div>
+            </div>
+			
+            <div class="row">
+                <div class="col-lg-10 col-md-10 col-sm-12 col-sm-offset-0 col-xs-10 col-xs-offset-1 col-md-offset-1 col-lg-offset-1">
+                    <h2 class="page-header">Challenge track</h2>
+                </div>
+                <div class="col-lg-10 col-md-10 col-sm-12 col-sm-offset-0 col-xs-10 col-xs-offset-1 col-md-offset-1 col-lg-offset-1">
+                    <p class="text-justify">
+                        The 2<sup>nd</sup> 3DFAW Challenge evaluates 3D face reconstruction methods on a new large corpora of profile-to-profile face videos annotated with corresponding high-resolution 3D ground truth meshes. The corpora includes profile-to-profile videos obtained under a range of conditions:
+                    </p>
+                    <ul>
+                        <li>high-definition in-the-lab video, </li>
+                        <li>unconstrained video from an iPhone device</li>
+                    </ul> 
+                    <br>
+                    <div class="row">
+                        <img src="./data500.jpg" alt="Data collection" class="img-responsive center-block">
+                        <p class="text-center"><b>Figure 1.</b> Ground truth mesh and profile-to-profile video of a subject.</p>
+                    </div>
+                    <p class="text-justify">
+                        For each subject, high-resolution 3D ground truth scans were obtained using a Di4D imaging system. The goal of the challenge is to reconstruct the 3D structure of the face from the two different video sources. 
+                    </p>
+                    
+                    	<!--<b>If you are interested in getting 3DFAW Challenge training data please <a href="mailto:sergey.tulyakov@unitn.it?subject=3DFAW Challenge data request&amp;body=I am interested in receiving 3DFAW training data. Could you please provide it to me, when the data is ready?">email us</a> </b>-->
+                    <p class="lead">
+                        <b>Challenge website will open on May 27th, 2019!</b>
+                    </p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-10 col-md-10 col-sm-12 col-sm-offset-0 col-xs-10 col-xs-offset-1 col-md-offset-1 col-lg-offset-1">
+                    <h2 class="page-header">Dates</h2>
+					<p><b>Challenge Track</b>
+						<ul>
+                            <li>May 27th: Challenge site opens, training data available</li>
+                            <li>June, 26th: Testing phase begins</li>
+                            <li>July, 17: Competition ends, best scoring methods invited to submit paper</li>
+                        </ul>
+						</p>
+					<p><b>Workshop Track</b>
+						<ul>
+                            <li>July 24th: Paper submission deadline</li>
+                            <li>August 21st: Notification of acceptance</li>
+                            <li>August 28th: Camera ready submission</li>
+                        </ul>
+						</p>
+
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-lg-10 col-md-10 col-sm-12 col-sm-offset-0 col-xs-10 col-xs-offset-1 col-md-offset-1 col-lg-offset-1">
+                    <h2 class="page-header">Workshop chairs</h2>
+                </div>
+                <div class="col-lg-10 col-md-10 col-sm-12 col-sm-offset-0 col-xs-10 col-xs-offset-1 col-md-offset-1 col-lg-offset-1">
+                    <ul>
+                        <li><a href="http://www.laszlojeni.com/">Laszlo A. Jeni</a>, Carnegie Mellon University, USA</li>
+                        <li><a href="http://www.pitt.edu/~jeffcohn/">Jeffrey F. Cohn</a>, University of Pittsburgh, USA</li>
+                        <li><a href="http://www.cs.binghamton.edu/~lijun/">Lijun Yin</a>, Binghamton University, USA</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-10 col-md-10 col-sm-12 col-sm-offset-0 col-xs-10 col-xs-offset-1 col-md-offset-1 col-lg-offset-1">
+                    <h2 class="page-header">Technical program committee</h2>
+                </div>
+                <div class="col-lg-10 col-md-10 col-sm-12 col-sm-offset-0 col-xs-10 col-xs-offset-1 col-md-offset-1 col-lg-offset-1">
+					TBA
+                </div>
+            </div>
+		    </div>
+		
+    
+	
+
+	
+
+</div></body></html>
