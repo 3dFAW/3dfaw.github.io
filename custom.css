@@ -13,3 +13,7 @@ a:link{
 a:hover {
   color: #FF69B4;
 }
+
+a:visted {
+  color: #FF69B4;
+}
