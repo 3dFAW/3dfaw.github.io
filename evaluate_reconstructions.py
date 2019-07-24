@@ -40,7 +40,7 @@ class meshObj(object):
                                         path + MeshNum+".obj"+ " is in valid wavefront OBJ format.")
                 quit()
         #load faces
-        regexp = r"f\s(\d+)\/\d*\/\d*\s(\d+)\/\d*\/\d*\s(\d+)\/\d*\/\d*"
+        regexp = r"f\s(\d+)\/*\d*\/*\d*\s(\d+)\/*\d*\/*\d*\s(\d+)\/*\d*\/*\d*"
 
         # Error handle and check for corrupt formating of file
         try:
@@ -64,7 +64,13 @@ class meshObj(object):
         # check to make sure free vertices are not refered to in the landmark indices file, otherwise remove all free vertices
         uniq = np.unique(self.faces)
         landmarks = []
-        for i in self.landmarks_3D:
+        for idx, i in enumerate(self.landmarks_3D):
+                if i == -1: 
+                        landmarks.append(-1)
+                        if idx == 13:
+                                print ("File Value Error: 3D Landmark indices cannot have an unknown value at index 13, nose tip!")
+                                quit()
+                        continue
                 try:
                         landmarks.append(np.where(i == uniq)[0][0])
                 except:
@@ -73,6 +79,8 @@ class meshObj(object):
                         quit()
         landmarks = np.array(landmarks)
 
+        self.landmarks_3D = landmarks
+        
         #filter to only include vertices that are part of a face. NO free vertices
         self.vertices = self.vertices[uniq]
         return 
@@ -309,9 +317,7 @@ def eval_mesh(test_mesh, res_dir, ref_dir, reffile_prefix='mesh', resfile_prefix
         #load the landmarks for rough alignment 
         landmark_s = mesh_s.vertices[mesh_s.landmarks_3D]
         landmark_t = mesh_t.vertices[mesh_t.landmarks_3D]
-        selInds = np.where(mesh_t.landmarks_3D ==-1)
-        landmark_s  = np.delete(landmark_s, selInds, axis=0)
-        landmark_t  = np.delete(landmark_t, selInds, axis=0)
+        selInds = np.union1d(np.where(mesh_s.landmarks_3D ==-1)[0], np.where(mesh_t.landmarks_3D ==-1)[0])
 
         #### ONLY for the reconstructed/pred mesh we
         # crop to 95 mm around the nose tip (landmark 13th/51)
@@ -329,6 +335,10 @@ def eval_mesh(test_mesh, res_dir, ref_dir, reffile_prefix='mesh', resfile_prefix
         # needed for the reconstruction dist. calculation
         f_s = np.array(reconFaceCrop) 
         f_t = mesh_t.faces
+
+        # ignore landmarks that were -1 in the target
+        landmark_s  = np.delete(landmark_s, selInds, axis=0)
+        landmark_t  = np.delete(landmark_t, selInds, axis=0)
 
         errorS2T,errorT2S,RR,tt,ss = reconstruct_distance(reconstruct_shape_crop,gt_shape,f_s,f_t,landmark_s,landmark_t)
 
@@ -388,7 +398,7 @@ submit_dir = args["pred_dir"]
 ref_dir = args["gt_dir"]
 test_file = args["test_file"]
 
-print("3DFAW-Video evaluation program version 12.5")
+print("3DFAW-Video evaluation program version 12.6")
 print('Pred. Dir:',submit_dir)
 print('Ground Truth Dir:', ref_dir)
 
