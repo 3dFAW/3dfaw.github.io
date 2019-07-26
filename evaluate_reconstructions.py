@@ -27,7 +27,7 @@ class meshObj(object):
     def load_from_obj(self, path, MeshNum):
             
         #load the vertices 
-        regexp = r"v\s([+-]?[0-9]*[.]?[0-9]+)\s([+-]?[0-9]*[.]?[0-9]+)\s([+-]?[0-9]*[.]?[0-9]+)*"
+        regexp = r"v\s([+-]?[0-9]*[.]?[0-9]+[e]?[+-]?[0-9]*)\s([+-]?[0-9]*[.]?[0-9]+[e]?[+-]?[0-9]*)\s([+-]?[0-9]*[.]?[0-9]+[e]?[+-]?[0-9]*)*"
 
         # Error handle and check for corrupt formating of file
         try:
@@ -78,9 +78,24 @@ class meshObj(object):
                         \nPlease fix VertexLandmarks correspondences to be not use free vertices!")
                         quit()
         landmarks = np.array(landmarks)
-
         self.landmarks_3D = landmarks
-        
+
+        if self.vertices.shape[0] < uniq.shape[0]:
+                print ("File Format Error: File contains references to non-existant vertices!")
+                quit()
+
+        ## correct the faces of the meshes ##
+        if self.vertices.shape[0] > uniq.shape[0]:
+                new_idx = range(0,len(uniq))
+                idx_map = dict(zip(uniq,new_idx))
+                new_faces = []
+                for tri in self.faces:
+                        new_tri = [idx_map[tri[0]], idx_map[tri[1]],idx_map[tri[2]]]
+                        new_faces.append(new_tri)
+                new_faces = np.array(new_faces)
+                self.faces = new_faces
+        #####
+
         #filter to only include vertices that are part of a face. NO free vertices
         self.vertices = self.vertices[uniq]
         return 
@@ -398,7 +413,7 @@ submit_dir = args["pred_dir"]
 ref_dir = args["gt_dir"]
 test_file = args["test_file"]
 
-print("3DFAW-Video evaluation program version 12.6")
+print("3DFAW-Video evaluation program version 12.7")
 print('Pred. Dir:',submit_dir)
 print('Ground Truth Dir:', ref_dir)
 
